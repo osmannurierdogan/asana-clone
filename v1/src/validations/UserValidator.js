@@ -1,9 +1,8 @@
 const Joi = require("joi");
 const createValidation = Joi.object({
-  full_name: Joi.string().required().min(5),
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
-  email: Joi.string().required().min(5),
-  profile_image: Joi.string().min(1),
+  full_name: Joi.string().required().min(3),
+  password: Joi.string().required().min(4),
+  email: Joi.string().email().required().min(5),
 });
 
 module.exports = {
