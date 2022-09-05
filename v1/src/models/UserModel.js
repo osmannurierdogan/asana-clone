@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const UserLogger = require("../scripts/logger/UserLogger.js");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -9,6 +10,13 @@ const UserSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
+UserSchema.post("save", (doc) => {
+  UserLogger.log({
+    level: "info",
+    message: doc,
+  });
+});
 
 UserSchema.plugin(require("mongoose-autopopulate"));
 const UserModel = mongoose.model("User", UserSchema);

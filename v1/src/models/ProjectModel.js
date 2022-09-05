@@ -15,10 +15,10 @@ const ProjectSchema = new mongoose.Schema(
   { versionKey: false, timestamps: true }
 );
 
-ProjectSchema.pre("save", (next, doc) => {
-  console.log("Before => ", doc);
-  next();
-});
+// ProjectSchema.pre("save", (next, doc) => {
+//   console.log("Before => ", doc);
+//   next();
+// });
 ProjectSchema.post("save", (doc) => {
   ProjectLogger.log({
     level: "info",

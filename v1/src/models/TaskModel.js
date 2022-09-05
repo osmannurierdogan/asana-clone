@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const TaskLogger = require("../scripts/logger/TaskLogger.js");
 
 const TaskSchema = new mongoose.Schema(
   {
@@ -48,6 +49,13 @@ const TaskSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
+TaskSchema.post("save", (doc) => {
+  TaskLogger.log({
+    level: "info",
+    message: doc,
+  });
+});
 
 TaskSchema.plugin(require("mongoose-autopopulate"));
 const TaskModel = mongoose.model("Task", TaskSchema);

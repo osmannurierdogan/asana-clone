@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const SectionLogger = require("../scripts/logger/SectionLogger.js");
 
 const SectionSchema = new mongoose.Schema(
   {
@@ -21,6 +22,12 @@ const SectionSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
+SectionSchema.post("save", (doc) => {
+  SectionLogger.log({
+    level: "info",
+    message: doc,
+  });
+});
 
 SectionSchema.plugin(require("mongoose-autopopulate"));
 const SectionModel = mongoose.model("Section", SectionSchema);
