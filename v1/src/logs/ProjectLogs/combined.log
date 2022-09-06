@@ -1,2 +1,4 @@
 {"level":"info","message":{"_id":"63164064284340720fbace47","createdAt":"2022-09-05T18:31:00.176Z","name":"Log Test","updatedAt":"2022-09-05T18:31:00.176Z","user_id":"63161366aeef0cac89bd2123"},"service":"ProjectService"}
 {"level":"info","message":{"_id":"63164077284340720fbace4a","createdAt":"2022-09-05T18:31:19.702Z","name":"Log Test","updatedAt":"2022-09-05T18:31:19.702Z","user_id":"63161366aeef0cac89bd2123"},"service":"ProjectService"}
+{"level":"info","message":{"_id":"6317c9a32b1a540fae8d58c0","createdAt":"2022-09-06T22:28:51.849Z","name":"Asana Clone Project","updatedAt":"2022-09-06T22:28:51.849Z","user_id":null},"service":"ProjectService"}
+{"level":"info","message":{"_id":"6317c9ae2b1a540fae8d58c3","createdAt":"2022-09-06T22:29:02.694Z","name":"Asana Clone Project Test","updatedAt":"2022-09-06T22:29:02.694Z","user_id":null},"service":"ProjectService"}

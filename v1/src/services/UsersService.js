@@ -3,8 +3,8 @@ const UserModel = require("../models/UserModel.js");
 
 class UsersService extends BaseService {
   model = UserModel;
+  async login(loginData) {
+    return this.model.findOne(loginData);
+  }
 }
-// const insert = (userData) => {
-//   UserModel.save(userData);
-// };
 module.exports = new UsersService();

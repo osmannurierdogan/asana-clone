@@ -4,7 +4,12 @@ const createValidation = Joi.object({
   password: Joi.string().required().min(4),
   email: Joi.string().email().required().min(5),
 });
+const loginValidation = Joi.object({
+  password: Joi.string().required().min(4),
+  email: Joi.string().email().required().min(5),
+});
 
 module.exports = {
   createValidation,
+  loginValidation,
 };

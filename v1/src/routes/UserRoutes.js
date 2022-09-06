@@ -9,12 +9,16 @@ const {
   getById,
   create,
   remove,
+  login,
+  getLoginData,
 } = require("../controllers/UsersController.js");
 
 router.get("/", getAll);
+router.get("/login", getLoginData);
 router.get("/:id", getById);
 router.route("/").post(validate(validationSchemas.createValidation), create);
 // router.delete("/", remove);
 router.delete("/:id", remove);
+router.route("/login").post(validate(validationSchemas.loginValidation), login);
 
 module.exports = router;
