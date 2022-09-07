@@ -10,20 +10,31 @@ const getById = async (req, res) => {
   res.render("projects", { project: project });
 };
 const create = async (req, res) => {
-  const projectData = {
-    name: req.body.name,
-    user_id: "631663cc82983067b4f4576c",
-  };
-  const addProject = await ProjectsService.add(projectData);
+  // const projectData = {
+  //   name: req.body.name,
+  //   user_id: req.user?._id,
+  // };
+  // const addProject = await ProjectsService.add(projectData);
+  req.body.user_id = req.user?._id;
+  // req.body.user_id = req.user;
+  const addProject = await ProjectsService.add(req.body);
   res.send("Projects Create");
 };
 const remove = async (req, res) => {
   const itemId = await ProjectsService.delete(req.params.id);
   res.render("projects");
 };
+const update = async (req, res) => {
+  if (!req.params?.id) {
+    return "ID is missing.";
+  }
+  await ProjectsService.update(req.params.id, req.body);
+  res.send("Project Updated");
+};
 module.exports = {
   getAll,
   getById,
   create,
   remove,
+  update,
 };

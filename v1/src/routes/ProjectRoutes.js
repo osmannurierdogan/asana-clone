@@ -10,6 +10,7 @@ const {
   getById,
   create,
   remove,
+  update,
 } = require("../controllers/ProjectsController.js");
 
 router.route("/").get(authenticateToken, getAll);
@@ -23,5 +24,12 @@ router
   );
 // router.delete("/", remove);
 router.delete("/:id", remove);
+router
+  .route("/update/:id")
+  .patch(
+    authenticateToken,
+    validate(validationSchemas.updateValidation),
+    update
+  );
 
 module.exports = router;

@@ -11,4 +11,7 @@ module.exports = class Service {
   async delete(itemId) {
     return this.model.deleteOne({ _id: itemId });
   }
+  async update(itemId, data) {
+    return this.model.findByIdAndUpdate(itemId, data, { new: true });
+  }
 };

@@ -17,7 +17,7 @@ const verifyAccessToken = (token, key) => {
       console.log("verifyAccessToken error :>> ", error);
       return error;
     }
-    return user;
+    return user?._doc;
   });
 };
 

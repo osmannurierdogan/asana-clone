@@ -9,6 +9,7 @@ const ProjectSchema = new mongoose.Schema(
       ref: "User",
       autopopulate: {
         maxDepth: 1,
+        select: "full_name email",
       },
     },
   },

@@ -14,14 +14,7 @@ const getById = async (req, res) => {
   res.render("users", { user: user });
 };
 const create = async (req, res) => {
-  // const userData = {
-  //   full_name: "Osman Nuri Erdogan",
-  //   password: "1111",
-  //   email: "osmerd04@gmail.com",
-  //   profile_image: "profile image url",
-  // };
   req.body.password = passwordToHash(req.body.password);
-  //console.log(req.body.password, crytedPassword);
   await UsersService.add(req.body);
   res.render("users");
 };
@@ -33,7 +26,7 @@ const remove = async (req, res) => {
 const login = async (req, res) => {
   req.body.password = passwordToHash(req.body.password);
   let loggedInUser = await UsersService.login(req.body);
-  console.log("loggedInUser Before :>> ", loggedInUser);
+  // console.log("loggedInUser Before :>> ", loggedInUser);
   if (!loggedInUser) {
     return "Cannot login with provided data!";
   } else {
@@ -46,8 +39,9 @@ const login = async (req, res) => {
     };
     delete loggedInUser.password;
   }
-  console.log("loggedInUser After :>> ", loggedInUser);
+  // console.log("loggedInUser After :>> ", loggedInUser);
   res.render("login", { user: loggedInUser });
+  // res.render("login", { user: JSON.stringify(loggedInUser) });
 };
 const getLoginData = async (req, res) => {
   const loggedInUser = await UsersService.login(req.body);
