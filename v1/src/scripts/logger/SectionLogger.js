@@ -6,15 +6,15 @@ const logger = winston.createLogger({
   defaultMeta: { service: "SectionService" },
   transports: [
     new winston.transports.File({
-      filename: "v1/src/logs/SectionLogs/error.log",
+      filename: "src/logs/SectionLogs/error.log",
       level: "error",
     }),
     new winston.transports.File({
-      filename: "v1/src/logs/SectionLogs/info.log",
+      filename: "src/logs/SectionLogs/info.log",
       level: "info",
     }),
     new winston.transports.File({
-      filename: "v1/src/logs/SectionLogs/combined.log",
+      filename: "src/logs/SectionLogs/combined.log",
     }),
   ],
 });
