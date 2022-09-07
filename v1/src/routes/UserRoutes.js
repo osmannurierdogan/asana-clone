@@ -2,23 +2,38 @@
 const validate = require("../middlewares/Validate.js");
 // Validations
 const validationSchemas = require("../validations/UserValidator.js");
+const authenticateToken = require("../middlewares/AuthenticateToken.js");
 const express = require("express");
 const router = express.Router();
 const {
-  getAll,
-  getById,
-  create,
-  remove,
+  getAllUsers,
+  findUser,
+  createUser,
+  removeUser,
   login,
-  getLoginData,
+  getUserProjects,
+  resetPassword,
+  updateUserData,
 } = require("../controllers/UsersController.js");
 
-router.get("/", getAll);
-router.get("/login", getLoginData);
-router.get("/:id", getById);
-router.route("/").post(validate(validationSchemas.createValidation), create);
-// router.delete("/", remove);
-router.delete("/:id", remove);
+router.get("/", getAllUsers);
+router
+  .route("/")
+  .post(validate(validationSchemas.createValidation), createUser);
+router
+  .route("/")
+  .patch(
+    authenticateToken,
+    validate(validationSchemas.updateValidation),
+    updateUserData
+  );
+router.route("/projects").get(authenticateToken, getUserProjects);
 router.route("/login").post(validate(validationSchemas.loginValidation), login);
+router
+  .route("/reset-password")
+  .post(validate(validationSchemas.resetPasswordValidation), resetPassword);
+
+router.delete("/:id", removeUser);
+router.get("/:id", findUser);
 
 module.exports = router;

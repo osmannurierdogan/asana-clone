@@ -20,8 +20,8 @@ const authenticateToken = (req, res, next) => {
       .send({ error: "Token has been expired." });
   }
   req.user = verifiedToken;
-  console.log("req.user :>> ", req.user);
-  console.log("verifiedToken :>> ", verifiedToken);
+  // console.log("req.user :>> ", req.user);
+  // console.log("verifiedToken :>> ", verifiedToken);
   next();
 };
 module.exports = authenticateToken;

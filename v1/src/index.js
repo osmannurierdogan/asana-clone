@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const path = require("path");
 const config = require("./config");
 const loaders = require("./loaders");
+const events = require("./scripts/events");
 const {
   ProjectRouter,
   TaskRouter,
@@ -11,6 +12,7 @@ const {
 } = require("./routes");
 config();
 loaders();
+events();
 const PORT = process.env.APP_PORT || 3232;
 const app = express();
 
@@ -25,10 +27,10 @@ app.use("/tasks", TaskRouter);
 app.use("/sections", SectionRouter);
 app.use("/users", UserRouter);
 
-app.get("/", (req, res) => {
-  //res.send("osman");
-  res.render("index");
-});
+// app.get("/", (req, res) => {
+//   //res.send("osman");
+//   res.render("index");
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);

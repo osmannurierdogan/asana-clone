@@ -10,3 +10,4 @@
 {"level":"info","message":{"_id":"6318802468d6970578a1c98d","createdAt":"2022-09-07T11:27:32.843Z","name":"Netflix Clone Project","updatedAt":"2022-09-07T11:27:32.843Z","user_id":"631663cc82983067b4f4576c"},"service":"ProjectService"}
 {"level":"info","message":{"_id":"6318806734d0f0948352f277","createdAt":"2022-09-07T11:28:39.479Z","updatedAt":"2022-09-07T11:28:39.479Z"},"service":"ProjectService"}
 {"level":"info","message":{"_id":"6318809f4392f106ce868f8d","createdAt":"2022-09-07T11:29:35.615Z","name":"Facebook Clone Project","updatedAt":"2022-09-07T11:29:35.615Z","user_id":"631663cc82983067b4f4576c"},"service":"ProjectService"}
+{"level":"info","message":{"_id":"6318b195068a9ede6434ec9c","createdAt":"2022-09-07T14:58:29.712Z","name":"Vibely.io Clone Project","updatedAt":"2022-09-07T14:58:29.712Z","user_id":"631663cc82983067b4f4576c"},"service":"ProjectService"}
