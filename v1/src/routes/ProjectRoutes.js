@@ -14,7 +14,6 @@ const {
 } = require("../controllers/ProjectsController.js");
 
 router.route("/").get(authenticateToken, getAll);
-router.get("/:id", getById);
 router
   .route("/")
   .post(
@@ -22,8 +21,9 @@ router
     validate(validationSchemas.createValidation),
     create
   );
+router.get("/:id", getById);
 // router.delete("/", remove);
-router.delete("/:id", remove);
+router.route("/:id").delete(authenticateToken, remove);
 router
   .route("/update/:id")
   .patch(

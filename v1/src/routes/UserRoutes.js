@@ -33,7 +33,7 @@ router
   .route("/reset-password")
   .post(validate(validationSchemas.resetPasswordValidation), resetPassword);
 
-router.delete("/:id", removeUser);
+router.route("/:id").delete(authenticateToken, removeUser);
 router.get("/:id", findUser);
 
 module.exports = router;

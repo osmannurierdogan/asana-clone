@@ -19,8 +19,8 @@ const findUser = async (req, res) => {
 };
 const createUser = async (req, res) => {
   req.body.password = passwordToHash(req.body.password);
-  await UsersService.add(req.body);
-  res.render("users");
+  const createdUser = await UsersService.add(req.body);
+  res.render("users", { user: createdUser });
 };
 const removeUser = async (req, res) => {
   const itemId = await UsersService.delete(req.params.id);
