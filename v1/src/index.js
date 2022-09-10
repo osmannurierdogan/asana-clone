@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const helmet = require("helmet");
 const path = require("path");
 const config = require("./config");
@@ -16,8 +17,10 @@ events();
 const PORT = process.env.APP_PORT || 3232;
 const app = express();
 
-app.use(helmet());
+app.use("/uploads", express.static(path.join(__dirname, "./", "uploads")));
 app.use(express.json());
+app.use(helmet());
+app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "pug");

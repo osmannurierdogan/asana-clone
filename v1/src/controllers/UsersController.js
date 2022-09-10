@@ -3,6 +3,7 @@ const ProjectsService = require("../services/ProjectsService.js");
 const uuid = require("uuid");
 const eventEmitter = require("../scripts/events/EventEmitter.js");
 const { passwordToHash } = require("../scripts/utils/HashPassword.js");
+const path = require("path");
 const {
   generateAccessToken,
   generateRefreshToken,
@@ -79,6 +80,40 @@ const updateUserData = async (req, res) => {
   const updatedUser = await UsersService.update(req.user?._id, req.body);
   res.send(updatedUser);
 };
+const changePassword = async (req, res) => {
+  req.body.password = passwordToHash(req.body.password);
+  const updatedUser = await UsersService.update(
+    { _id: req.user?._id },
+    req.body
+  );
+  res.send(updatedUser);
+};
+const updateProfileImage = async (req, res) => {
+  // 1 - Image Control
+  // return false;
+  if (!req?.files?.profile_image) {
+    res.send("Error");
+  }
+  const extension = path.extname(req.files.profile_image.name);
+  const fileName = `${req?.user._id}${extension}`;
+  const folderPath = path.join(__dirname, "../", "uploads/users", fileName);
+  req.files.profile_image.mv(folderPath, (err) => {
+    if (err) {
+      console.log("err :>> ", err);
+      res.send({ error: err });
+    }
+    // console.log("Image upload is successful");
+    // res.send("Image upload is successful");
+    const updatedUser = UsersService.update(req.user._id, {
+      profile_image: fileName,
+    });
+    res.send("User data updated with profile image");
+  });
+  // console.log("req.files :>> ", req.files);
+  // 2 - Upload Process
+  // 3 - DB Save Process
+  // 4 - Responses
+};
 module.exports = {
   getAllUsers,
   findUser,
@@ -88,4 +123,6 @@ module.exports = {
   getUserProjects,
   resetPassword,
   updateUserData,
+  changePassword,
+  updateProfileImage,
 };
